@@ -5,9 +5,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const debug = require('debug')('axilisserver:server');
+const debug = require('debug')('MyApp');
 const http = require('http');
 
 const indexRoutes = require('./routes/index.routes');
@@ -47,11 +46,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 
 
 // define routes
