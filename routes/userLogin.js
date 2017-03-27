@@ -1,11 +1,16 @@
-var mongo = require('mongodb');
+'use strict';
 
+const express = require('express');
+const router = express.Router();
+
+
+var mongo = require('mongodb');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('ios', server);
+var db = new Db('ios', server);
 
 db.open(function(err, db) {
     if(!err) {
@@ -19,7 +24,7 @@ db.open(function(err, db) {
     }
 });
 
-exports.get = function(req, res) {
+router.get('/', (req, res, next) => {
     db.collection('users', function(err, collection) {
         if(err) {
             console.log(err);
@@ -29,9 +34,10 @@ exports.get = function(req, res) {
             });
         }
     });
-};
+});
 
-exports.post = function(req, res) {
+
+router.post('/', (req, res) => {
     console.log(req.body);
     var username = req.body.username,
         password = req.body.password;
@@ -56,8 +62,11 @@ exports.post = function(req, res) {
             });
         }
     });
-};
+});
 
+
+
+module.exports = router;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
