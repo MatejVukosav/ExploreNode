@@ -1,53 +1,25 @@
-/**
+/*/**
  * Created by Vuki on 25.3.2017..
  */
 'use strict';
 
 const express = require('express');
 const router = express.Router();
-const models = require('../models/event.model');
-// const Lecture = require('../models/event.model');
-// const Lecturer = require('../models/event.model');
-// const Schedule = require('../models/event.model');
+const EventController = require('../controllers/event.controller');
 
-//dohvati sve evente
-router.get('/', (req, res, next) => {
-    Event.find({})
-        .exec((_err, _events) => {
-            if (_err) {
-                return res.sendStatus(500);
-            }
-            res.json({'data': _events});
-        });
-});
+router.get('/:eventId', EventController.getEvent);
+router.post('/', EventController.createEvent);
+router.get('/', EventController.getEvents);
 
-//dohvati event po identifikatoru
-router.get('/:eventId', (req, res, next) => {
-    const eventId = req.params.eventId;
-
-    Event.findById(eventId)
-        .exec((_err, _event) => {
-            if (_err) {
-                return res.sendStatus(500);
-            }
-            if (!_event) {
-                return res.sendStatus(404);
-            }
-            res.json({'data': _event});
-
-        });
-
-});
-
+/*
 //spremi event
-router.post('/', jsonParser, (req, res, next) => {
+router.post('/efeeefs', (req, res, next) => {
 
     const event = new models.Event(req.body);
 
     let schedule = new models.Schedule(req.body.schedule);
 
     //console.log(schedule);
-
 
     let days = new models.Day(req.body.schedule.day);
 
@@ -115,6 +87,5 @@ router.post('/', jsonParser, (req, res, next) => {
     });
 
 });
-
-
+*/
 module.exports = router;

@@ -10,8 +10,8 @@ const debug = require('debug')('MyApp');
 const http = require('http');
 
 const indexRoutes = require('./routes/index.routes');
-const usersRoutes = require('./routes/userLogin');
-const userRegisterRoutes = require('./routes/userRegister');
+const authRoutes = require('./routes/auth.routes');
+const usersRoutes = require('./routes/users.routes');
 const scheduleRoutes = require('./routes/schedule.routes');
 const eventsRoutes = require('./routes/events.routes');
 
@@ -41,33 +41,31 @@ app.use(function (req, res, next) {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-
-
 
 // define routes
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRoutes);
 //app.use('/schedule', scheduleRoutes);
+app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/events', eventsRoutes);
 app.use('/events/:eventId/schedule', scheduleRoutes);
 
 //baza
+const MONGO_STRING = "mongodb://member:iosappmember@ds141450.mlab.com:41450/iosapp"
+
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://member:iosappmember@ds141450.mlab.com:41450/iosapp',
-//     (err) => {
-//         if (err) {
-//             return console.error(err);
-//         }
-//         console.log('Uspjesno spojeni na bazu!');
-//     });
+//mongoose.connect(process.env['MONGO_STRING'],
+mongoose.connect(MONGO_STRING, (err) => {
+    if (err) {
+        return console.error(err);
+    }
+    console.log('Database connection successful!');
+});
 
-
-// catch 404 and forward to error handler
+//catch 404 and forward to error handler
 app.use(function (req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
@@ -78,7 +76,11 @@ app.use(function (req, res, next) {
 app.use((err, req, res, next) => {
     // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.locals.error = req
+        .app
+        .get('env') === 'development'
+        ? err
+        : {};
 
     // render the error page
     res.status(err.status || 500);
@@ -97,7 +99,9 @@ function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
     }
-    const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+    const bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
@@ -116,7 +120,9 @@ function onError(error) {
 // Event listener for HTTP server "listening" event.
 function onListening() {
     const addr = server.address();
-    const bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port;
+    const bind = (typeof addr === 'string')
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
 
@@ -126,10 +132,3 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 console.log('Listening on port: ' + port + '...');
-
-//
-// app.get('/userLogin', usersRoutes.get);
-// app.post('/userLogin', usersRoutes.post);
-// app.post('/userRegister', userRegisterRoutes.post);
-// app.get('/schedule', scheduleRoutes.get);
-
