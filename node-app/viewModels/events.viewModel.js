@@ -3,11 +3,5 @@
 const EventViewModel = require('../viewModels/event.viewModel');
 
 module.exports = function (events) {
-
-    let data = [];
-    events.forEach(function (event) {
-        data.push(new EventViewModel(event));
-    });
-
-    return {data};
+    return users.map((_event) => (new EventViewModel(_event)));
 };

@@ -6,5 +6,4 @@ const ScheduleController = require('../controllers/schedule.controller');
 
 router.get('/:eventId', ScheduleController.getSchedule);
 
-
 module.exports = router;
