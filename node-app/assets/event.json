@@ -109,3 +109,85 @@
     }
   ]
 }
+
+
+
+
+{
+  "title": "Google Summit 2017",
+  "days": 2,
+  "schedule":[
+
+    {
+      "day": "12.07.2017",
+      "lectures": [
+        {
+          "time": "08:00-12:00",
+          "title": "Uvod u google cloud",
+          "location": "A101",
+          "lecturer": {
+            "name": "Bruce Peric",
+            "biography": "Bruce je vrsni bazas"
+          },
+          "short_description": "Baze su krasne"
+        },
+        {
+          "time": "12:00-14:00",
+          "title": "Google auto",
+          "location": "A101",
+          "lecturer": {
+            "name": "John Lovric",
+            "biography": "John je roden u japanu"
+          },
+          "short_description": "Kako raditi tablice kao veliki"
+        },
+        {
+          "time": "14:00-16:00",
+          "title": "google android",
+          "location": "A101",
+          "lecturer": {
+            "name": "Ivan Ivic",
+            "biography": "Ivan zivi u Zadru"
+          },
+          "short_description": "Prednosti i mane nerelacijskih baza"
+        }
+      ]
+    },
+    {
+      "day": "13.07.2017",
+      "lectures": [
+        {
+          "time": "09:00-11:00",
+          "title": "Uvod u Android od googlea",
+          "location": "A101",
+          "lecturer": {
+            "name": "Andro Peric",
+            "biography": "Andro je vrsni androidas"
+          },
+          "short_description": "Kratak uvod u android na kojem ce se nauciti najosnovnije stvari"
+        },
+        {
+          "time": "12:00-14:00",
+          "title": "Pixel",
+          "location": "A101",
+          "lecturer": {
+            "name": "Mirjana Lovric",
+            "biography": "Mirjana je rodena u japanu"
+          },
+          "short_description": "Mirjana ce nam pokazati naprednije stvari o Androidu"
+        },
+        {
+          "time": "14:00-16:00",
+          "title": "OkHttp",
+          "location": "A101",
+          "lecturer": {
+            "name": "Lucija Mikic",
+            "biography": "Lucija zivi u Zadru"
+          },
+          "short_description": "HTTP client koji obecava"
+        }
+      ]
+    }
+  ]
+  
+}

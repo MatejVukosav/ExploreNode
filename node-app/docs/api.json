@@ -1,0 +1,446 @@
+/**
+INDEX
+**/
+GET '/'
+pocetna stranica servera
+response: 
+html pocetne stranice
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Five iOS Project app Server</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1>Welcome to Five iOS Project app Server</h1>
+        <p>Authors: Matej Vukosav and Ivan Srdic, Luka Muzic</p>
+    </body>
+</html>
+
+/**
+AUTH
+**/
+//register
+POST '/auth/register'
+request{
+    "username": "matej",
+    "password": "matej12",
+    "first_name": "Matej",
+    "last_name": "Vukosav",
+    "gender": "M",
+    "age": 23
+}
+response{
+    "username": "matej",
+    "password": "matej12",
+    "first_name": "Matej",
+    "last_name": "Vukosav",
+    "gender": "M",
+    "age": 23,
+    "profile_image": {}
+}
+
+POST '/auth/login'
+request{
+    "username": "matej",
+    "password": "matej12"
+}
+
+response{
+    "username": "matej",
+    "password": "matej12",
+    "first_name": "Matej",
+    "last_name": "Vukosav",
+    "gender": "M",
+    "age": 23,
+    "profile_image": {}
+}
+
+/**
+EVENT
+**/
+
+GET '/events/:eventId'
+dohvat eventa po idiju
+response cijeli event
+
+POST '/events/'
+kreira event
+request
+{
+  "title": "Apple Summit 2017",
+  "days": 3,
+  "schedule":[
+    {
+      "day": "23.03.2017",
+      "lectures": [
+        {
+          "time": "09:00-12:00",
+          "title": "Uvod u Swift",
+          "location": "A101",
+          "lecturer": {
+            "name": "Pero Peric",
+            "biography": "Pero je vrsni swiftas"
+          },
+          "short_description": "Kratak uvod u swift na kojem ce se nauciti najosnovnije stvari"
+        },
+        {
+          "time": "12:00-14:00",
+          "title": "Swift za napredne",
+          "location": "A101",
+          "lecturer": {
+            "name": "Jovana Lovric",
+            "biography": "Jovana je rodena u japanu"
+          },
+          "short_description": "Jovana ce nam pokazati naprednije stvari o swiftu"
+        },
+        {
+          "time": "14:00-16:00",
+          "title": "Alamofire",
+          "location": "A101",
+          "lecturer": {
+            "name": "Marjan Mikic",
+            "biography": "Marjan zivi u Zadru"
+          },
+          "short_description": "Alamofire da ili name"
+        }
+      ]
+    },
+    {
+      "day": "24.03.2017",
+      "lectures": [
+        {
+          "time": "08:00-12:00",
+          "title": "Uvod u Postgres",
+          "location": "A101",
+          "lecturer": {
+            "name": "Bruce Peric",
+            "biography": "Bruce je vrsni bazas"
+          },
+          "short_description": "Baze su krasne"
+        },
+        {
+          "time": "12:00-14:00",
+          "title": "Postgres za napredne",
+          "location": "A101",
+          "lecturer": {
+            "name": "John Lovric",
+            "biography": "John je roden u japanu"
+          },
+          "short_description": "Kako raditi tablice kao veliki"
+        },
+        {
+          "time": "14:00-16:00",
+          "title": "Nerelacijske baze",
+          "location": "A101",
+          "lecturer": {
+            "name": "Ivan Ivic",
+            "biography": "Ivan zivi u Zadru"
+          },
+          "short_description": "Prednosti i mane nerelacijskih baza"
+        }
+      ]
+    },
+    {
+      "day": "25.03.2017",
+      "lectures": [
+        {
+          "time": "09:00-11:00",
+          "title": "Uvod u Android",
+          "location": "A101",
+          "lecturer": {
+            "name": "Andro Peric",
+            "biography": "Andro je vrsni androidas"
+          },
+          "short_description": "Kratak uvod u android na kojem ce se nauciti najosnovnije stvari"
+        },
+        {
+          "time": "12:00-14:00",
+          "title": "Android za napredne",
+          "location": "A101",
+          "lecturer": {
+            "name": "Mirjana Lovric",
+            "biography": "Mirjana je rodena u japanu"
+          },
+          "short_description": "Mirjana ce nam pokazati naprednije stvari o Androidu"
+        },
+        {
+          "time": "14:00-16:00",
+          "title": "Retrofit 2",
+          "location": "A101",
+          "lecturer": {
+            "name": "Lucija Mikic",
+            "biography": "Lucija zivi u Zadru"
+          },
+          "short_description": "HTTP client koji obecava"
+        }
+      ]
+    }
+  ]
+  
+}
+response
+{
+  "id": "58ecd54f660d192718e4bf7c",
+  "title": "Apple Summit 2017",
+  "days": 3,
+  "schedule": [
+    {
+      "lectures": [
+        {
+          "short_description": "Kratak uvod u swift na kojem ce se nauciti najosnovnije stvari",
+          "lecturer": {
+            "biography": "Pero je vrsni swiftas",
+            "name": "Pero Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Swift",
+          "time": "09:00-12:00"
+        },
+        {
+          "short_description": "Jovana ce nam pokazati naprednije stvari o swiftu",
+          "lecturer": {
+            "biography": "Jovana je rodena u japanu",
+            "name": "Jovana Lovric"
+          },
+          "location": "A101",
+          "title": "Swift za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "Alamofire da ili name",
+          "lecturer": {
+            "biography": "Marjan zivi u Zadru",
+            "name": "Marjan Mikic"
+          },
+          "location": "A101",
+          "title": "Alamofire",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "23.03.2017"
+    },
+    {
+      "lectures": [
+        {
+          "short_description": "Baze su krasne",
+          "lecturer": {
+            "biography": "Bruce je vrsni bazas",
+            "name": "Bruce Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Postgres",
+          "time": "08:00-12:00"
+        },
+        {
+          "short_description": "Kako raditi tablice kao veliki",
+          "lecturer": {
+            "biography": "John je roden u japanu",
+            "name": "John Lovric"
+          },
+          "location": "A101",
+          "title": "Postgres za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "Prednosti i mane nerelacijskih baza",
+          "lecturer": {
+            "biography": "Ivan zivi u Zadru",
+            "name": "Ivan Ivic"
+          },
+          "location": "A101",
+          "title": "Nerelacijske baze",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "24.03.2017"
+    },
+    {
+      "lectures": [
+        {
+          "short_description": "Kratak uvod u android na kojem ce se nauciti najosnovnije stvari",
+          "lecturer": {
+            "biography": "Andro je vrsni androidas",
+            "name": "Andro Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Android",
+          "time": "09:00-11:00"
+        },
+        {
+          "short_description": "Mirjana ce nam pokazati naprednije stvari o Androidu",
+          "lecturer": {
+            "biography": "Mirjana je rodena u japanu",
+            "name": "Mirjana Lovric"
+          },
+          "location": "A101",
+          "title": "Android za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "HTTP client koji obecava",
+          "lecturer": {
+            "biography": "Lucija zivi u Zadru",
+            "name": "Lucija Mikic"
+          },
+          "location": "A101",
+          "title": "Retrofit 2",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "25.03.2017"
+    }
+  ]
+}
+
+GET '/events/'
+dohvat svih evenata
+response lista evenata
+[
+  {
+    "id": "58ecd0e092df701a14a60a21",
+    "title": "Apple Summit 2017",
+    "days": 3
+  },
+  {
+    "id": "58ecd12ff04f833b34f9a8da",
+    "title": "Google Summit 2017",
+    "days": 5
+  }
+]
+
+
+/**
+USERS
+**/
+GET '/'
+lista korisnika
+response: 
+[
+  {
+    "username": "matej",
+    "password": "matej12",
+    "first_name": "Matej",
+    "last_name": "Vukosav",
+    "gender": "M",
+    "age": 23,
+    "profile_image": {}
+  }
+]
+
+/**
+SCHEDULE
+**/
+
+GET 'events/:eventId/schedule'
+vraca schedule za event s id = eventId
+response
+{
+  "schedule": [
+    {
+      "lectures": [
+        {
+          "short_description": "Kratak uvod u swift na kojem ce se nauciti najosnovnije stvari",
+          "lecturer": {
+            "biography": "Pero je vrsni swiftas",
+            "name": "Pero Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Swift",
+          "time": "09:00-12:00"
+        },
+        {
+          "short_description": "Jovana ce nam pokazati naprednije stvari o swiftu",
+          "lecturer": {
+            "biography": "Jovana je rodena u japanu",
+            "name": "Jovana Lovric"
+          },
+          "location": "A101",
+          "title": "Swift za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "Alamofire da ili name",
+          "lecturer": {
+            "biography": "Marjan zivi u Zadru",
+            "name": "Marjan Mikic"
+          },
+          "location": "A101",
+          "title": "Alamofire",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "23.03.2017"
+    },
+    {
+      "lectures": [
+        {
+          "short_description": "Baze su krasne",
+          "lecturer": {
+            "biography": "Bruce je vrsni bazas",
+            "name": "Bruce Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Postgres",
+          "time": "08:00-12:00"
+        },
+        {
+          "short_description": "Kako raditi tablice kao veliki",
+          "lecturer": {
+            "biography": "John je roden u japanu",
+            "name": "John Lovric"
+          },
+          "location": "A101",
+          "title": "Postgres za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "Prednosti i mane nerelacijskih baza",
+          "lecturer": {
+            "biography": "Ivan zivi u Zadru",
+            "name": "Ivan Ivic"
+          },
+          "location": "A101",
+          "title": "Nerelacijske baze",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "24.03.2017"
+    },
+    {
+      "lectures": [
+        {
+          "short_description": "Kratak uvod u android na kojem ce se nauciti najosnovnije stvari",
+          "lecturer": {
+            "biography": "Andro je vrsni androidas",
+            "name": "Andro Peric"
+          },
+          "location": "A101",
+          "title": "Uvod u Android",
+          "time": "09:00-11:00"
+        },
+        {
+          "short_description": "Mirjana ce nam pokazati naprednije stvari o Androidu",
+          "lecturer": {
+            "biography": "Mirjana je rodena u japanu",
+            "name": "Mirjana Lovric"
+          },
+          "location": "A101",
+          "title": "Android za napredne",
+          "time": "12:00-14:00"
+        },
+        {
+          "short_description": "HTTP client koji obecava",
+          "lecturer": {
+            "biography": "Lucija zivi u Zadru",
+            "name": "Lucija Mikic"
+          },
+          "location": "A101",
+          "title": "Retrofit 2",
+          "time": "14:00-16:00"
+        }
+      ],
+      "day": "25.03.2017"
+    }
+  ]
+}

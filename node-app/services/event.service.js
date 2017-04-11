@@ -21,7 +21,7 @@ function getEvents() {
 }
 
 function getEvent(eventId) {
-    console.log('event service');
+    console.log('get event');
 
     let deferred = Q.defer();
 
@@ -30,7 +30,7 @@ function getEvent(eventId) {
         .findById(eventId)
         .exec((_err, _event) => {
             if (_err) {
-                return deferr.reject(500);
+                return deferred.reject(500);
             }
             if (!_event) {
                 return deferred.reject(404);
@@ -42,8 +42,20 @@ function getEvent(eventId) {
 }
 
 function createEvent(event) {
+    let deferred = Q.defer();
 
-    console.log('event service: ' + event);
+    const eventObject = models.Event(event);
+    eventObject.save((_err, _event) => {
+        if (_err) {
+            return deferred.reject(500);
+        }
+        if (!_event) {
+            return deferred.reject(404);
+        }
+
+        return deferred.resolve(_event);
+    });
+    return deferred.promise;
 
 }
 

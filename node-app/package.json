@@ -10,6 +10,8 @@
   "author": "Vuki",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "blueprint": "^2.1.5",
     "body-parser": "^1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",

@@ -9,7 +9,7 @@ const ScheduleService = require('../services/schedule.service');
 function getSchedule(req, res) {
     console.log('getSchedule');
 
-    const eventId = req.params.eventId
+    let eventId = req.params.eventId
 
     ScheduleService
         .getSchedule(eventId)

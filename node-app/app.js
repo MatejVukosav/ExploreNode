@@ -12,7 +12,6 @@ const http = require('http');
 const indexRoutes = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
 const usersRoutes = require('./routes/users.routes');
-const scheduleRoutes = require('./routes/schedule.routes');
 const eventsRoutes = require('./routes/events.routes');
 
 const app = express();
@@ -51,7 +50,7 @@ app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/events', eventsRoutes);
-app.use('/events/:eventId/schedule', scheduleRoutes);
+
 
 //baza
 const MONGO_STRING = "mongodb://member:iosappmember@ds141450.mlab.com:41450/iosapp"

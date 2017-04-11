@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
     res.render('index', {
         title: 'Five iOS Project app Server',
-        authors: 'Ivan Srdic, Luka Muzic and Matej Vukosav'
+        authors: 'Matej Vukosav and Ivan Srdic, Luka Muzic'
     });
 });
 

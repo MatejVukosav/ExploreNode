@@ -2,8 +2,8 @@
 
 module.exports = function (event) {
     return {
-       title :event.title,
-       days: event.days,
-       schedule:event.schedule
-    };
+        id: event._id, 
+        title: event.title, 
+        days: event.days,
+        schedule: event.schedule};
 };

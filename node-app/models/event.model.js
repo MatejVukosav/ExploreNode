@@ -10,24 +10,27 @@ const eventSchema = new Schema({
     title: String,
     days: Number,
     schedule: {
-        type: Schema.Types.ObjectId,
-        ref: 'Schedule'
+        type: Array
     }
 });
 
 const scheduleSchema = new Schema({
-    schedules: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Day'
-    }]
+    schedules: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Day'
+        }
+    ]
 });
 
 const daySchema = new Schema({
     day: String,
-    lectures: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Lecture'
-    }]
+    lectures: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Lecture'
+        }
+    ]
 });
 
 const lectureSchema = new Schema({
@@ -41,18 +44,13 @@ const lectureSchema = new Schema({
     short_description: String
 });
 
-const lecturerSchema = new Schema({
-    name: String,
-    biography: String,
-});
-
+const lecturerSchema = new Schema({name: String, biography: String});
 
 let Event = mongoose.model('Event', eventSchema);
 let Schedule = mongoose.model('Schedule', scheduleSchema);
 let Day = mongoose.model('Day', daySchema);
 let Lecture = mongoose.model('Lecture', lectureSchema);
 let Lecturer = mongoose.model('Lecturer', lecturerSchema);
-
 
 module.exports = {
     Event: Event,

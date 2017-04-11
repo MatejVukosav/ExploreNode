@@ -1,22 +1,24 @@
 'use strict'
 
 const Q = require('q');
-const Event = require('../models/event.model');
-const ScheduleService = require('../services/schedule.service');
+const models = require('../models/event.model');
 
 function getSchedule(eventId) {
     let deferred = Q.defer();
-    
-    console.log('get schedule');
 
-    ScheduleService
-        .getSchedule(eventId)
-        .then((schedule) => {
-            return deferred.resolve(schedule);
-        })
-        .catch((_err) => {
-            //ako ga rejecta
-            res.sendStatus(_err);
+    models
+        .Event
+        .findById(eventId)
+        .exec((_err, _event) => {
+            if (_err) {
+                return deferred.reject(500);
+            }
+          
+            if (!_event || !_event.schedule) {
+                return deferred.reject(404);
+            }
+
+            return deferred.resolve(_event.schedule);
         });
 
     return deferred.promise;
